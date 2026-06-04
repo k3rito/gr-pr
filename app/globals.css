@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060506;
+  --foreground: #f7f0df;
+  --gold: #d8b26e;
+  --gold-soft: #9a7a43;
+  --void: #020202;
+  --mist: rgba(225, 188, 112, 0.16);
 }
 
 @theme inline {
@@ -12,15 +16,92 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.cinematic-bg {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(216, 178, 110, 0.12), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(216, 178, 110, 0.1), transparent 50%),
+    linear-gradient(180deg, #0b090c 0%, #050405 45%, #030303 100%);
+}
+
+.section-shell {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+.gold-glow {
+  text-shadow: 0 0 32px rgba(216, 178, 110, 0.28), 0 0 80px rgba(216, 178, 110, 0.2);
+}
+
+.years-glow {
+  animation: yearsGlowPulse 3.6s ease-in-out infinite;
+}
+
+@keyframes yearsGlowPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 18px rgba(216, 178, 110, 0.22));
+    opacity: 0.96;
+  }
+  50% {
+    filter: drop-shadow(0 0 36px rgba(216, 178, 110, 0.35));
+    opacity: 1;
+  }
+}
+
+.grain-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.1;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.18) 0.4px, transparent 0.4px);
+  background-size: 2px 2px;
+  mix-blend-mode: soft-light;
+}
+
+.masara-type {
+  font-size: clamp(2rem, 2.6vw, 3.2rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #f1dfb6;
+  font-weight: 300;
+  font-family: "Galteniya", "Cinzel", "Cormorant Garamond", serif;
+  text-shadow: 0 0 28px rgba(216, 178, 110, 0.35), 0 0 70px rgba(216, 178, 110, 0.2);
+}
+
+.caret {
+  animation: caret-blink 1.9s ease-in-out infinite;
+}
+
+@keyframes caret-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  60%,
+  100% {
+    opacity: 0.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
