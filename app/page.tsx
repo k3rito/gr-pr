@@ -1,10 +1,6 @@
-import dynamic from "next/dynamic";
+"use client";
 
-// استدعاء المكون بشكل ديناميكي وإلغاء الـ SSR له
-const CinematicExperience = dynamic(
-  () => import("@/components/cinematic/cinematic-experience"),
-  { ssr: false }
-);
+import CinematicExperience from "@/components/cinematic/cinematic-experience";
 
 export default function Home() {
   return <CinematicExperience />;
